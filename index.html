@@ -11,7 +11,7 @@
 	<title>Optical Calculator</title>
 </head>
 <body class="uk-background-primary">
-	<h1 class="uk-heading-line uk-text-center"><span>UI-DSM Calculator</span></h1>
+	<h1 class="uk-heading-line uk-text-center"><span>UI-DBUS Calculator</span></h1>
 	<div style="margin-top: 10vh;">
 		<div class="uk-margin" uk-margin>
 	        <label style="color: black;margin-right: 5px;">Number Of Channels:</label>
@@ -105,7 +105,7 @@ $("#submit-button").on("click",function(){
 				while(counter <= N){
 					var string = "<div class='uk-margin uk-card uk-card-secondary'>";
 					var string2 = "</div>";
-					string = string + "BU-"+iterator+":: ";
+					string = string + "BU"+iterator+" = ";
 					var k = 0
 					while(k<BaseUnit - 2*iterator){
 						string = string +" "+ counter+",";
@@ -118,7 +118,11 @@ $("#submit-button").on("click",function(){
 					var string2 = "</div>";
 					k = 0;
 					while(k<=iterator){
+						if(BaseUnit - 2*iterator == 1){
+						string = string + "Surplus Channel Spacings = " + counter;
+						}else{
 						string = string + "F" + freq+" = "+counter+", ";
+						}
 						freq = freq + 1;
 						counter = counter + 1;
 						if(counter >= N){
@@ -127,6 +131,7 @@ $("#submit-button").on("click",function(){
 						k = k + 1;
 					}
 					string = string + string2;
+
 					$("#element").append(string);
 					if(counter >= N-1){
 						break;
