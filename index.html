@@ -117,9 +117,12 @@ $("#submit-button").on("click",function(){
 					var string = "<div class='uk-margin uk-card uk-card-default'>";
 					var string2 = "</div>";
 					k = 0;
+					if (BaseUnit - 2*iterator == 1){
+						string = string + "Surplus Channel Spacings = ";
+					}
 					while(k<=iterator){
 						if(BaseUnit - 2*iterator == 1){
-						string = string + "Surplus Channel Spacings = " + counter;
+						string = string + " " + counter;
 						}else{
 						string = string + "F" + freq+" = "+counter+", ";
 						}
