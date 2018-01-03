@@ -55,8 +55,8 @@
 $("#submit-button").on("click",function(){
 	$("#element").empty();
 	var N = $("#NumberOfChannels").val();
-	var start = parseInt($("#StartingFrequency").val());
-	var delta = parseInt($("#DeltaFrequency").val()); 
+	var start = parseFloat($("#StartingFrequency").val());
+	var delta = parseFloat($("#DeltaFrequency").val()); 
 	var BaseUnit = 4;
 	if(N<10){
 		UIkit.notification({
