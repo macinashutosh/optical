@@ -19,6 +19,16 @@
 	            
 	            <input id ="NumberOfChannels" class="uk-input uk-form-width-small"  type="number" placeholder="0">
 	        </div>
+	        <label style="color: black;margin-right: 5px;margin-left: 5px;">Starting Frequency:</label>
+	        <div uk-form-custom="target: true">
+	            
+	            <input id ="StartingFrequency" class="uk-input uk-form-width-small"  type="number" placeholder="0">
+	        </div>
+	        <label style="color: black;margin-right: 5px;margin-left: 5px;">Delta Frequency:</label>
+	        <div uk-form-custom="target: true">
+	            
+	            <input id ="DeltaFrequency" class="uk-input uk-form-width-small"  type="number" placeholder="0">
+	        </div>
 	        <button class="uk-button uk-button-secondary" id="submit-button">Submit</button>
 
     	</div>
@@ -45,6 +55,8 @@
 $("#submit-button").on("click",function(){
 	$("#element").empty();
 	var N = $("#NumberOfChannels").val();
+	var start = parseInt($("#StartingFrequency").val());
+	var delta = parseInt($("#DeltaFrequency").val()); 
 	var BaseUnit = 4;
 	if(N<10){
 		UIkit.notification({
@@ -101,17 +113,24 @@ $("#submit-button").on("click",function(){
 				// console.log(BaseUnit);	
 				counter = 1;
 				iterator = 0;
+
 				freq = 0;
 				while(counter <= N){
-					var string = "<div class='uk-margin uk-card uk-card-secondary'>";
+					var string = "<div class='uk-margin uk-card uk-card-secondary'>BaseUnit "+iterator+":<br>";
 					var string2 = "</div>";
-					string = string + "BU"+iterator+" = ";
+					// string = string + "BU"+iterator+" = ";
 					var k = 0
+					var deltaSum = 0
 					while(k<BaseUnit - 2*iterator){
-						string = string +" "+ counter+",";
+						// string = string +" "+ counter+",";
+						deltaSum = deltaSum + start+0;
+						string = string +"\tFrequency\t"+k+"\t:\t"+start+"\tnm <br>";
+						start = start + delta;
 						counter = counter + 1;
 						k = k + 1;
 					}
+					// string = string +"DeltaSum"+ deltaSum/k;
+					var frequency = deltaSum/k;
 					string = string + string2;
 					$("#element").append(string);
 					var string = "<div class='uk-margin uk-card uk-card-default'>";
@@ -123,15 +142,18 @@ $("#submit-button").on("click",function(){
 					}
 					if (BaseUnit - 2*iterator == 1){
 						string = string + "Surplus Channel Spacings = ";
+					}else{
+						string = string + "Delta Frequency :<br>";
 					}
 					
 					while(k<=iterator){
 						if(BaseUnit - 2*iterator == 1){
 						string = string + " " + counter;
 						}else{
-						string = string + "F" + freq+" = "+counter+", ";
+						string = string + "Frequency\t" + freq+"\t:\t"+frequency+"<br> ";
 						}
 						freq = freq + 1;
+						frequency = frequency + delta;
 						counter = counter + 1;
 						if(counter >= N){
 							break;
