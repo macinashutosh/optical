@@ -89,6 +89,11 @@ $("#submit-button").on("click",function(){
 					}
 
 					iterator = iterator + 1;
+					counter = counter + 1;
+					if(counter> N-1){
+						check = false;
+						break;
+					}
 				}
 			}
 				// end1:console.log("end");
