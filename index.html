@@ -73,15 +73,10 @@ $("#submit-button").on("click",function(){
 						counter = counter + (BaseUnit - 2*iterator);
 						console.log("B"+iterator+"="+(BaseUnit - 2*iterator));
 						console.log(counter);
-						if(counter > N-1){
-							check = false;
-							break;
-						}else{
-							counter = counter + 1
-							if(counter> N-1){
+						counter = counter + 1
+						if(counter> N-1){
 								check = false;
 								break;
-							}
 						}
 					}else{
 						BaseUnit = BaseUnit + 1;
@@ -90,7 +85,7 @@ $("#submit-button").on("click",function(){
 					}
 
 					iterator = iterator + 1;
-					counter = counter + 1;
+					// counter = counter + 1;
 					if(counter> N-1){
 						check = false;
 						break;
@@ -101,7 +96,8 @@ $("#submit-button").on("click",function(){
 				// console.log(BaseUnit);	
 				counter = 1;
 				iterator = 0;
-				previousBaseUnit = BaseUnit 
+				previousBaseUnit = BaseUnit; 
+				var checkBase = true
 				freq = 0;
 				while(counter <= N){
 					var string = "<div class='uk-margin uk-card uk-card-secondary'>BaseUnit "+iterator+":<br>";
@@ -114,11 +110,12 @@ $("#submit-button").on("click",function(){
 						string = string +" "+ temp+",";
 						k = k + 1;
 						temp+=1
-						if(temp > N-1){
+						if(temp > N){
+						checkBase = false;
 						break;
 						}
 					}
-					if(k == previousBaseUnit){
+					if(checkBase){
 						$("#element").append(string);
 						counter = counter + k;
 						previousBaseUnit = previousBaseUnit- 2;
@@ -131,7 +128,7 @@ $("#submit-button").on("click",function(){
 					if(counter > N-1){
 						break;
 					}
-					if (k <= 0){
+					if (checkBase == false){
 						string = string + "Surplus Channel Spacings = ";
 					}else{
 						string = string + "Delta Frequency :<br>";
