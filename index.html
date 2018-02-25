@@ -79,9 +79,14 @@ $("#submit-button").on("click",function(){
 								break;
 						}
 					}else{
+						if (counter > N-2){
+							counter++;
+							console.log("yaha aagya")
+						}else{
 						BaseUnit = BaseUnit + 1;
 						console.log("Change this Mofu")
 						continue loop1;
+						}
 					}
 
 					iterator = iterator + 1;
