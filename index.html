@@ -28,15 +28,15 @@
     </div>
 	</div>
 	<div style="display:grid;width: 100%;grid-template-columns: 30% 30% 30%;grid-column-gap: 3%;">
-		<div>
+		<div style="border:1px solid">
 					<h1 style="color:#fff;text-align:center">Constant Iterator</h1>
 					<div id="constant_element"></div>
 		</div>
-		<div>
+		<div style="border:1px solid">
 					<h1 style="color:#fff;text-align:center">Linear Iterator</h1>
 					<div id="linear_element"></div>
 		</div>
-		<div>
+		<div style="border:1px solid">
 					<h1 style="color:#fff;text-align:center">Fibonacci Iterator</h1>
 					<div id="fibbonacci_element"></div>
 		</div>
@@ -87,6 +87,7 @@
 		background: red;
 		margin-right: 4px;
 		margin-left: 4px;
+		margin-bottom: 4px;
 	}
 	.inner_cube_freq{
 		padding:10px;
@@ -99,8 +100,9 @@
 	}
 	.base_unit_inner{
 		display: flex;
-		width: 100%;
-		justify-content: space-evenly;
+width: 100%;
+justify-content: center;
+flex-wrap: wrap;
 	}
 </style>
 <script type="text/javascript">
@@ -123,6 +125,8 @@ $("#submit-button").on("click",function(){
 
 	}else{
 		assignLinearBaseunit(BaseUnit,n);
+		assignConstantBaseunit(BaseUnit,n);
+		assignFibbonacciBaseunit(BaseUnit,n)
 	}
 
 
@@ -221,5 +225,205 @@ function assignLinearBaseunit(BaseUnit,N){
 			}
 }
 
+function assignConstantBaseunit(BaseUnit,N){
+		$("#constant_element").empty();
+		var check = true;
+		loop1:while(check){
+				var iterator = 0;
+				var counter = 0;
+				while(true){
 
+					if((BaseUnit - 2)>0){
+						counter = counter + (BaseUnit - 2);
+						console.log("B"+iterator+"="+(BaseUnit - 2));
+						console.log(counter);
+						counter = counter + 1
+						if(counter> N-1){
+								check = false;
+								break;
+						}
+					}else{
+						if (counter > N-2){
+							counter++;
+							console.log("yaha aagya")
+						}else{
+						BaseUnit = BaseUnit + 1;
+						console.log("Change this Mofu")
+						continue loop1;
+						}
+					}
+
+					iterator = iterator + 1;
+					// counter = counter + 1;
+					if(counter> N-1){
+						check = false;
+						break;
+					}
+				}
+			}
+				// end1:console.log("end");
+				// console.log(BaseUnit);
+				counter = 1;
+				iterator = 0;
+				previousBaseUnit = BaseUnit;
+				var checkBase = true
+				freq = 0;
+				while(counter <= N){
+					var string = "<div class='base_unit_outer'>";
+					var string2 = "</div>";
+					string = string + "<div class='base_label'>Base Unit "+iterator+":</div><div class='base_unit_inner'>";
+					var k = 0
+					var temp = counter;
+					var deltaSum = 0
+					while(k<BaseUnit - 2){
+						string = string +"<div class='inner_cube_base_unit'>"+ temp+"</div>";
+						k = k + 1;
+						temp+=1
+						if(temp > N){
+						checkBase = false;
+						break;
+						}
+					}
+					string = string + string2;
+					if(checkBase){
+						$("#constant_element").append(string);
+						counter = counter + k;
+						previousBaseUnit = previousBaseUnit- 2;
+					}
+
+					var string = "<div class='freq_outer'><div class='base_label'>";
+					var string2 = "</div>";
+
+
+					if(counter > N-1){
+						break;
+					}
+					if (checkBase == false){
+						string = string + "Surplus Channel Spacings : ";
+					}else{
+						string = string + "Delta Frequency " + (iterator + 1) + ":";
+					}
+					string = string + string2;
+					k = 0;
+					string = string + "<div class='inner_cube_freq'>" + counter; + "</div>"
+					counter = counter + 1;
+					string = string + string2;
+
+					$("#constant_element").append(string);
+					if(counter > N-1){
+						break;
+					}
+					iterator = iterator + 1;
+
+				}
+}
+
+
+function assignFibbonacciBaseunit(BaseUnit,N){
+	$("#fibbonacci_element").empty();
+	var check = true;
+	loop1:while(check){
+			var iterator = 0;
+			var counter = 0;
+			while(true){
+
+				if((BaseUnit - fibonacciSeriesIthTerm(iterator))>0){
+					counter = counter + (BaseUnit - fibonacciSeriesIthTerm(iterator));
+					console.log("B"+iterator+"="+(BaseUnit - fibonacciSeriesIthTerm(iterator)));
+					console.log(counter);
+					counter = counter + 1
+					if(counter> N-1){
+							check = false;
+							break;
+					}
+				}else{
+					if (counter > N-2){
+						counter++;
+						console.log("yaha aagya")
+					}else{
+					BaseUnit = BaseUnit + 1;
+					console.log("Change this Mofu")
+					continue loop1;
+					}
+				}
+
+				iterator = iterator + 1;
+				// counter = counter + 1;
+				if(counter> N-1){
+					check = false;
+					break;
+				}
+			}
+		}
+			// end1:console.log("end");
+			// console.log(BaseUnit);
+			counter = 1;
+			iterator = 0;
+			previousBaseUnit = BaseUnit;
+			var checkBase = true
+			freq = 0;
+			while(counter <= N){
+				var string = "<div class='base_unit_outer'>";
+				var string2 = "</div>";
+				string = string + "<div class='base_label'>Base Unit "+iterator+":</div><div class='base_unit_inner'>";
+				var k = 0
+				var temp = counter;
+				var deltaSum = 0
+				while(k<BaseUnit - fibonacciSeriesIthTerm(iterator)){
+					string = string +"<div class='inner_cube_base_unit'>"+ temp+"</div>";
+					k = k + 1;
+					temp+=1
+					if(temp > N){
+					checkBase = false;
+					break;
+					}
+				}
+				string = string + string2;
+				if(checkBase){
+					$("#fibbonacci_element").append(string);
+					counter = counter + k;
+					previousBaseUnit = previousBaseUnit- 2;
+				}
+
+				var string = "<div class='freq_outer'><div class='base_label'>";
+				var string2 = "</div>";
+
+
+				if(counter > N-1){
+					break;
+				}
+				if (checkBase == false){
+					string = string + "Surplus Channel Spacings : ";
+				}else{
+					string = string + "Delta Frequency " + (iterator + 1) + ":";
+				}
+				string = string + string2;
+				k = 0;
+				string = string + "<div class='inner_cube_freq'>" + counter; + "</div>"
+				counter = counter + 1;
+				string = string + string2;
+
+				$("#fibbonacci_element").append(string);
+				if(counter > N-1){
+					break;
+				}
+				iterator = iterator + 1;
+
+			}
+}
+
+function fibonacciSeriesIthTerm (ele) {
+	if(i<0){
+		return 1;
+	}else{
+		var prevTerm = 1;
+		var term = 1;
+		for(var i=0;i<ele;i++){
+			var temp = term + prevTerm;
+			prevTerm = term;
+			term = temp;
+		}
+		return term;
+	}
+}
 </script>
