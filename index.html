@@ -142,8 +142,8 @@ function assignLinearBaseunit(BaseUnit,N){
 
 				if((BaseUnit - 2*iterator)>0){
 					counter = counter + (BaseUnit - 2*iterator);
-					console.log("B"+iterator+"="+(BaseUnit - 2*iterator));
-					console.log(counter);
+					// console.log("B"+iterator+"="+(BaseUnit - 2*iterator));
+					// console.log(counter);
 					counter = counter + 1
 					if(counter> N-1){
 							check = false;
@@ -152,10 +152,10 @@ function assignLinearBaseunit(BaseUnit,N){
 				}else{
 					if (counter > N-2){
 						counter++;
-						console.log("yaha aagya")
+						// console.log("yaha aagya")
 					}else{
 					BaseUnit = BaseUnit + 1;
-					console.log("Change this Mofu")
+					// console.log("Change this Mofu")
 					continue loop1;
 					}
 				}
@@ -235,8 +235,8 @@ function assignConstantBaseunit(BaseUnit,N){
 
 					if((BaseUnit - 2)>0){
 						counter = counter + (BaseUnit - 2);
-						console.log("B"+iterator+"="+(BaseUnit - 2));
-						console.log(counter);
+						// console.log("B"+iterator+"="+(BaseUnit - 2));
+						// console.log(counter);
 						counter = counter + 1
 						if(counter> N-1){
 								check = false;
@@ -245,10 +245,10 @@ function assignConstantBaseunit(BaseUnit,N){
 					}else{
 						if (counter > N-2){
 							counter++;
-							console.log("yaha aagya")
+							// console.log("yaha aagya")
 						}else{
 						BaseUnit = BaseUnit + 1;
-						console.log("Change this Mofu")
+						// console.log("Change this Mofu")
 						continue loop1;
 						}
 					}
@@ -327,7 +327,7 @@ function assignFibbonacciBaseunit(BaseUnit,N){
 			var counter = 0;
 			while(true){
 
-				if((BaseUnit - fibonacciSeriesIthTerm(iterator))>0){
+				if((BaseUnit - fibonacciSeriesIthTerm(iterator)) > 0){
 					counter = counter + (BaseUnit - fibonacciSeriesIthTerm(iterator));
 					console.log("B"+iterator+"="+(BaseUnit - fibonacciSeriesIthTerm(iterator)));
 					console.log(counter);
@@ -368,11 +368,11 @@ function assignFibbonacciBaseunit(BaseUnit,N){
 				string = string + "<div class='base_label'>Base Unit "+iterator+":</div><div class='base_unit_inner'>";
 				var k = 0
 				var temp = counter;
-				var deltaSum = 0
-				while(k<BaseUnit - fibonacciSeriesIthTerm(iterator)){
+				var deltaSum = 0;
+				while(k < BaseUnit - fibonacciSeriesIthTerm(iterator)){
 					string = string +"<div class='inner_cube_base_unit'>"+ temp+"</div>";
 					k = k + 1;
-					temp+=1
+					temp+=1;
 					if(temp > N){
 					checkBase = false;
 					break;
@@ -413,12 +413,12 @@ function assignFibbonacciBaseunit(BaseUnit,N){
 }
 
 function fibonacciSeriesIthTerm (ele) {
-	if(i<0){
-		return 1;
+	if(ele <= 0){
+		return 0;
 	}else{
 		var prevTerm = 1;
 		var term = 1;
-		for(var i=0;i<ele;i++){
+		for(var i=1;i<ele;i++){
 			var temp = term + prevTerm;
 			prevTerm = term;
 			term = temp;
